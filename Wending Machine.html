@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Wedeng Mashin</title>
+
+
+	<script type="text/javascript">
+
+
+			// console.log(arraySize)
+	// 			Ստեղծում ենք coffeeMachine ֊ ի ավելի զարգացած տարբերակը որը կկոչենք vending machine։
+	// Այն պետք է ունենա իր մեջ լցրած ապրանքներ։ Ծրագիրը սկսելուց բացվում է պատուհան որտեղ կա երկու հնարավորություն։
+	// Առաջինը կատարել գնում որը գնում է հետևյալ քայերով։
+	//  երեվում են ապրանքները իրենք կոդերով օրինակ A0:
+	// Ապրանքը ընտրելուց հետո մուտքագրվում է գումարը և ստանում ենք ապրանքը և մեր մանրը։
+	// Երկրորդ հնարավորւոթյունը ապրանքների ավելացման հնարավորությունն է։ Այս տարբերակը ընտրելուց բացվում է պատուհան 
+	// որտեղ ընտրում ենք թե ինչ ապրանք ենք ցանկանում ավելացնել ապարատի մեջ։ Այս քայլից հետո բացվում է պատուհան որտեղ 
+	// գրում ենք քանակը։ Այս քայլից հետո այդ ապրանքի քանակը ավելանում է մուտքագրված քանակով
+	// Վաճարք կատարելուց հետո կամ ապրանք ավելացնելուց հետո պետք է նորից բացվի սկզբնական պատուհանը որտեղից մենք նորից
+	//  կարողանանք կատարել գնում կամ ավելացնել ապրանք։
+	// Ապրանքը վաճառելուց պետք է հաշվի առնել որ այդ ապրանքը լինի հակառակ դեպքում ցույց տալ որ ապրանքը չկա և նորից բացել սկզբնական պատուհանը։
+	
+	let productsType;
+	let productsPlus;
+	let productSeleqt;
+	let getManey;
+	let wendingMachine = {
+    
+        drinks:[
+            {
+                name:'հյութ',
+                code: 'a1',
+                price: 200,
+                quantity: 0,
+            },
+            {
+                name:'ջուր',
+                code: 'a2',
+                price: 150,
+                quantity: 10,
+            },
+            {
+                name:'սառը թեյ',
+                code: 'a3',
+                price: 250,
+                quantity: 10,
+            },
+        ],
+        sweets:[
+            {
+                name:'Snickers',
+                code: 'b1',
+                price: 230,
+                quantity: 10,
+            },
+            {
+                name:'Bounty',
+                code: 'b2',
+                price: 250,
+                quantity: 10,
+            },
+            {
+                name:'Kit-kat',
+                code: 'b3',
+                price: 200,
+                quantity: 10,
+            },
+        ],
+        
+          };
+	
+		
+
+	function startMashin(){
+			 
+			  	 productsType = prompt(`խմիչքներ  1 , քաղցրավենիք  2`);
+			if (productsType == 1 ) {
+				productSeleqt = prompt(drinksList(wendingMachine));
+				getManey = +prompt('մուտքագրեք գումարը');
+				for (let i = 0; i < wendingMachine.drinks.length; i++){
+					if ( wendingMachine.drinks[i].code == productSeleqt){
+						drincSell = wendingMachine.drinks[i];
+						break;
+					}
+					}
+					if (drincSell.quantity != 0){
+						alert(`Ձեր պատվերը  ${drincSell.name}  Ձեր մանրը  ${getManey - drincSell.price} AMD`);
+						
+					} else {
+						alert( ` ${drincSell.name} վերջացել է`);
+						
+					}
+					
+				}  else if ( productsType == 2){
+				productSeleqt = prompt(sweetsList(wendingMachine));
+				getManey = +prompt('մուտքագրեք գումարը');
+				for (let i = 0; i < wendingMachine.sweets.length; i++){
+					if ( wendingMachine.sweets[i].code == productSeleqt){
+						sweetSell = wendingMachine.sweets[i];
+						break;
+					}
+					}
+					if (sweetSell.quantity != 0){
+						alert(`Ձեր պատվերը  ${sweetSell.name}  Ձեր մանրը  ${getManey - sweetSell.price} AMD`);
+					} else {
+						alert( ` ${sweetSell.name} վերջացել է`)
+					};
+				};
+								
+			};
+
+	function addProduct(){ 
+
+				productsType = prompt(`որ բաժնում եք ցանկանում կատարել ավելացում խմիչքներ  1 , քաղցրավենիք  2`);
+			if (productsType == 1 ) {
+				productSeleqt = prompt( drinksList(wendingMachine));
+				getDrinqQuant = +prompt(`մուտքագրեք ավելացվող ապրանքի քանակը`);
+				for (let i = 0; i < wendingMachine.drinks.length; i++){
+					if ( wendingMachine.drinks[i].code == productSeleqt){
+						drincAdd = wendingMachine.drinks[i].quantity + getDrinqQuant;
+						break;
+					}
+					}
+					alert( `ապրանքը ավելացվել է ` );
+					console.log(wendingMachine.drinks);
+
+			} else if ( productsType == 2){
+				productSeleqt = prompt(sweetsList(wendingMachine));
+				getSweetQuant = +prompt(`մուտքագրեք ավելացվող ապրանքի քանակը`);
+				for (let i = 0; i < wendingMachine.sweets.length; i++){
+					if ( wendingMachine.sweets[i].code == productSeleqt){
+						drincAdd = wendingMachine.sweets[i].quantity + getSweetQuant;
+						break;
+					}
+					}
+					alert( `ապրանքը ավելացվել է ` );
+					console.log(wendingMachine.sweets);
+			}
+	}
+	function drinksList(wendingMachine) {
+					    let drinksChek = '';
+					    for (let i=0; i< wendingMachine.drinks.length; i++) {
+					        drinksChek += wendingMachine.drinks[i].name;
+					        drinksChek += ' ' + wendingMachine.drinks[i].price + ' ';
+					        drinksChek += ' ' + wendingMachine.drinks[i].code + ' |';
+					    }
+					    return drinksChek;
+					}
+	function sweetsList(wendingMachine) {
+					    let sweetsChek = '';
+					    for (let i=0; i< wendingMachine.sweets.length; i++) {
+					        sweetsChek += wendingMachine.sweets[i].name;
+					        sweetsChek += ' ' + wendingMachine.sweets[i].price + ' ';
+					        sweetsChek += ' ' + wendingMachine.sweets[i].code + ' |';
+					    }
+					    return sweetsChek;
+					};
+
+
+
+
+		
+
+
+	</script>
+
+
+</head>
+<body>
+
+	
+	<input type="button"  name="buy" value="կատարել գնում" onclick="startMashin()" />
+	
+	<br/>
+	<br/>
+	<br/>
+	<input type="password" name="password">
+	<input type="sumbit"  name="add" value="ավելացնել ապրանք" onclick="addProduct()" />
+	
+	
+	
+</body>
+</html>
